@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     var result = a.toDouble()-b.toDouble()
-                    text1?.text = result.toString()
+                    text1?.text = removeZero(result.toString())
                 }else if(textV.contains("+")){
                     val splitVal = textV.split("+")
 
@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     var result = a.toDouble() + b.toDouble()
-                    text1?.text = result.toString()
+                    text1?.text = removeZero(result.toString())
                 }else if(textV.contains("*")){
                     val splitVal = textV.split("*")
 
@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     var result = a.toDouble() * b.toDouble()
-                    text1?.text = result.toString()
+                    text1?.text = removeZero(result.toString())
                 }else if(textV.contains("/")){
                     val splitVal = textV.split("/")
 
@@ -103,12 +103,19 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     var result = a.toDouble() / b.toDouble()
-                    text1?.text = result.toString()
+                    text1?.text = removeZero(result.toString())
                 }
             }catch (e: ArithmeticException){
                 e.printStackTrace()
             }
         }
+    }
+    private fun removeZero(result: String): String{
+        var value = result
+        if(result.contains(".0")){
+            value = result.substring(0,result.length - 2)
+        }
+        return value
     }
 
     private  fun isOpAdd(value: String): Boolean{
